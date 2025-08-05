@@ -1,7 +1,29 @@
 {
-   "posts" : [
-        {"id": 1, "title": "post 1", "body": "post description 1"},
-        {"id": 2, "title": "post 2", "body": "post description 2"},
-        {"id": 3, "title": "post 3", "body": "post description 3"}
-    ]
+  "posts": [
+    {
+      "id": "1",
+      "title": "post 1",
+      "body": "post description 1"
+    },
+    {
+      "id": "2",
+      "title": "post 2",
+      "body": "post description 2"
+    },
+    {
+      "id": "3",
+      "title": "post 3",
+      "body": "post description 3"
+    },
+    {
+      "id": "44ac",
+      "title": "post 3",
+      "body": "post 3 description"
+    },
+    {
+      "id": "7492",
+      "title": "post 5",
+      "body": "post 5 description"
+    }
+  ]
 }

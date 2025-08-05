@@ -1,4 +1,7 @@
+import { useState } from "react";
 import { useGetPostsQuery } from "../features/api/apiSlice";
+import Post from "./Post";
+import AddPost from "./AddPost";
 
 export default function Posts() {
   const {
@@ -7,6 +10,7 @@ export default function Posts() {
     isError,
     error,
   } = useGetPostsQuery(5);   
+  const [currentPostId, setCurrentPostId] = useState(null)
 
   let content;
 
@@ -18,7 +22,7 @@ export default function Posts() {
     content = (
       <ul>
         {posts.map((post) => (
-          <li key={post.id}>{post.title}</li>
+          <li key={post.id}> <a href="#" onClick={()=> setCurrentPostId(post.id)}>{post.title}</a>  </li>
         ))}
       </ul>
     );
@@ -27,8 +31,20 @@ export default function Posts() {
   }
 
   return (
+    <>
+    
     <div className="p-4 h-40 flex flex-col items-center justify-center space-y-5 bg-white rounded shadow">
       {content}
+
+      
+      
     </div>
+    {currentPostId && 
+        <div className="max-w-md mx-auto mt-10 space-y-5">
+          <Post  id={currentPostId}/>
+        </div>
+      }
+    <AddPost />
+    </>
   );
 }

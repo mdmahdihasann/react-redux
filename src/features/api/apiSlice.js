@@ -5,12 +5,32 @@ export const apiSlice = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl: "http://localhost:3000"
     }),
+    tagTypes: ['post'],
     endpoints: (builder) =>({
         getPosts: builder.query({
            query: (limit = 10 ) => `/posts?_limit=${limit}`,
+           providesTags: ['post']
         }),
-        keepUnusedDataFor: 5, 
+        getPost: builder.query({
+           query: (id) => `/posts/${id}`,
+        }),
+        AddPost: builder.mutation({
+            query: (data) => ({
+                url: `/posts`,
+                method: 'POST',
+                body: data,
+            }),
+            invalidatesTags: ['post']
+        }),
+        EditPost: builder.mutation({
+            query: ({data, id}) => ({
+                url: `/posts/${id}`,
+                method: 'PATCH',
+                body: data,
+            }),
+        }),
+        
     }),
 });
 
-export const { useGetPostsQuery } = apiSlice;
+export const { useGetPostsQuery, useGetPostQuery, useAddPostMutation, useEditPostMutation } = apiSlice;
